@@ -21,7 +21,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, class-string|list<class-string>>
      */
-    public $aliases = [
+    public array $aliases = [
         'csrf'         => CSRF::class,
         'toolbar'      => DebugToolbar::class,
         'honeypot'     => Honeypot::class,
@@ -32,7 +32,7 @@ class Filters extends BaseFilters
         'pagecache'    => PageCache::class,
         'performance'  => PerformanceMetrics::class,
 
-        // --- Your custom filters ---
+        // Your custom filters
         'auth'         => \App\Filters\AuthGuard::class,
     ];
 
@@ -42,7 +42,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, list<string>>
      */
-    public $methods = [
+    public array $methods = [
         // e.g. 'post' => ['csrf']
     ];
 
@@ -52,44 +52,10 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public $filters = [
-        // Protect all vote‑related routes for logged‑in users
-        'auth'        => ['before' => ['vote/*', '']], 
-        // Protect all admin routes for admins only
-        'auth:admin'  => ['before' => ['admin/*']],
+    public array $filters = [
+        'auth'       => ['before' => ['', 'vote/*']],
+        'auth:admin' => ['before' => ['admin/*']],
     ];
 
-    /**
-     * List of special required filters.
-     *
-     * @var array{before: list<string>, after: list<string>}
-     */
-    public array $required = [
-        'before' => [
-            'forcehttps',
-            'pagecache',
-        ],
-        'after'  => [
-            'pagecache',
-            'performance',
-            'toolbar',
-        ],
-    ];
-
-    /**
-     * List of filter aliases that are always
-     * applied before and after every request.
-     *
-     * @var array<string, array<string>>
-     */
-    public array $globals = [
-        'before' => [
-            // 'csrf',
-            // 'honeypot',
-            // 'invalidchars',
-        ],
-        'after'  => [
-            // 'secureheaders',
-        ],
-    ];
+  
 }
