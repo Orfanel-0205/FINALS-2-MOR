@@ -134,6 +134,4 @@ Make sure mod_rewrite is enabled in Apache and .htaccess is correctly configured
 
 Routes are defined in app/Config/Routes.php.
 
-Author
-Psalm Moo – BSIT 3rd Year Student
-Finals Project – Applications Dev
+
