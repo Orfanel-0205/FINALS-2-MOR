@@ -1,109 +1,139 @@
-# CodeIgniter 4 Development
+Automated Electronic Voting System
+This project is a web-based electronic voting system developed using CodeIgniter 4. It provides a secure platform for conducting elections with role-based access for admin and voters.
 
-[![PHPUnit](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-phpunit.yml/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-phpunit.yml)
-[![PHPStan](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-phpstan.yml/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-phpstan.yml)
-[![Psalm](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-psalm.yml/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-psalm.yml)
-[![Coverage Status](https://coveralls.io/repos/github/codeigniter4/CodeIgniter4/badge.svg?branch=develop)](https://coveralls.io/github/codeigniter4/CodeIgniter4?branch=develop)
-[![Downloads](https://poser.pugx.org/codeigniter4/framework/downloads)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub stars](https://img.shields.io/github/stars/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub license](https://img.shields.io/github/license/codeigniter4/CodeIgniter4)](https://github.com/codeigniter4/CodeIgniter4/blob/develop/LICENSE)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/codeigniter4/CodeIgniter4/pulls)
-<br>
+Features
+User authentication (login/logout)
 
-## What is CodeIgniter?
+Admin dashboard to manage elections and candidates
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Voter dashboard to view ongoing elections and cast votes
 
-This repository holds the source code for CodeIgniter 4 only.
-Version 4 is a complete rewrite to bring the quality and the code into a more modern version,
-while still keeping as many of the things intact that has made people love the framework over the years.
+One vote per user per election
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+Real-time vote count display after election ends
 
-### Documentation
+Role-based access control (admin and voter)
 
-The [User Guide](https://codeigniter.com/user_guide/) is the primary documentation for CodeIgniter 4.
+Input validation and CSRF/XSS protection
 
-You will also find the [current **in-progress** User Guide](https://codeigniter4.github.io/CodeIgniter4/).
-As with the rest of the framework, it is a work in progress, and will see changes over time to structure, explanations, etc.
+Responsive UI with basic CSS styling
 
-You might also be interested in the [API documentation](https://codeigniter4.github.io/api/) for the framework components.
+Technologies Used
+PHP (CodeIgniter 4)
 
-## Important Change with index.php
+MySQL (phpMyAdmin)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+HTML, CSS, JavaScript
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+MVC Design Pattern
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Database Structure
+The following tables are used:
 
-## Repository Management
+users – stores user info (username, password, role)
 
-CodeIgniter is developed completely on a volunteer basis. As such, please give up to 7 days
-for your issues to be reviewed. If you haven't heard from one of the team in that time period,
-feel free to leave a comment on the issue so that it gets brought back to our attention.
+elections – holds election data (title, description, time)
 
-> [!IMPORTANT]
-> We use GitHub issues to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-> We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-> FEATURE REQUESTS.
+candidates – candidates linked to specific elections
 
-If you raise an issue here that pertains to support or a feature request, it will
-be closed! If you are not sure if you have found a bug, raise a thread on the forum first -
-someone else may have encountered the same thing.
+votes – stores voting records
 
-Before raising a new GitHub issue, please check that your bug hasn't already
-been reported or fixed.
+Foreign key constraints ensure relational integrity.
 
-We use pull requests (PRs) for CONTRIBUTIONS to the repository.
-We are looking for contributions that address one of the reported bugs or
-approved work packages.
+Roles
+Admin can:
 
-Do not use a PR as a form of feature request.
-Unsolicited contributions will only be considered if they fit nicely
-into the framework roadmap.
-Remember that some components that were part of CodeIgniter 3 are being moved
-to optional packages, with their own repository.
+Create, update, and delete elections
 
-## Contributing
+Add and manage candidates
 
-We **are** accepting contributions from the community! It doesn't matter whether you can code, write documentation, or help find bugs,
-all contributions are welcome.
+View vote results
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/README.md).
+Voter can:
 
-CodeIgniter has had thousands on contributions from people since its creation. This project would not be what it is without them.
+View ongoing elections
 
-<a href="https://github.com/codeigniter4/CodeIgniter4/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=codeigniter4/CodeIgniter4" />
-</a>
+Vote once per election
 
-Made with [contrib.rocks](https://contrib.rocks).
+View results after elections
 
-## Server Requirements
+Installation Instructions
+Clone the repository:
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+bash
+Copy
+Edit
+git clone https://github.com/your-username/electronic-voting-system.git
+Move the project to your web server root:
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Example for XAMPP:
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+bash
+Copy
+Edit
+C:/xampp/htdocs/FINALS_2_MOR
+Set up the database:
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Create a database in phpMyAdmin (e.g., it0049db)
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Import the provided it0049db.sql file
 
-## Running CodeIgniter Tests
+Update .env or app/Config/Database.php with your database credentials.
 
-Information on running the CodeIgniter test suite can be found in the [README.md](tests/README.md) file in the tests directory.
+Run migrations (optional if already imported):
+
+bash
+Copy
+Edit
+php spark migrate
+php spark db:seed AdminSeeder
+Start the project in the browser:
+
+bash
+Copy
+Edit
+http://localhost/FINALS_2_MOR/login
+Default Admin Account
+Username: admin
+
+Password: admin123
+
+You can change this in the AdminSeeder or directly in the database (passwords are hashed using password_hash()).
+
+Folder Structure
+app/Controllers – Auth, Vote, and Admin controllers
+
+app/Models – UserModel, ElectionModel, CandidateModel, VoteModel
+
+app/Views – Separated by role (auth/, admin/, vote/)
+
+public/assets/css/style.css – Basic design for UI elements
+
+Security Practices
+Passwords are hashed before storage
+
+Sessions are secured using CodeIgniter session handling
+
+Filters are used to restrict access to protected routes
+
+CSRF tokens are included in forms
+
+User inputs are validated and escaped
+
+Sample Screens
+Login page
+
+Admin election dashboard
+
+Voter election list and voting form
+
+Vote results
+
+Notes
+Make sure mod_rewrite is enabled in Apache and .htaccess is correctly configured.
+
+Routes are defined in app/Config/Routes.php.
+
+Author
+Psalm Moo – BSIT 3rd Year Student
+Finals Project – Applications Dev
