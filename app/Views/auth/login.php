@@ -9,9 +9,12 @@
   <div class="container">
     <h1>Login</h1>
 
-    <?php if (session()->getFlashdata('error')): ?>
-      <div class="flash-error"><?= esc(session()->getFlashdata('error')) ?></div>
-    <?php endif ?>
+  <?php if (session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger">
+        <?= session()->getFlashdata('error') ?>
+    </div>
+<?php endif; ?>
+
 
     <?= form_open('auth/login') ?>
       <?= csrf_field() ?>
