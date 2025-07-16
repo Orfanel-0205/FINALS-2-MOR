@@ -9,21 +9,26 @@
   <div class="container">
     <h1>Login</h1>
 
-  <?php if (session()->getFlashdata('error')): ?>
-    <div class="alert alert-danger">
+    <!-- Flash Error Message -->
+    <?php if (session()->getFlashdata('error')): ?>
+      <div class="alert alert-danger">
         <?= session()->getFlashdata('error') ?>
-    </div>
-<?php endif; ?>
+      </div>
+    <?php endif; ?>
 
-
-    <?= form_open('auth/login') ?>
+    <!-- Login Form -->
+    <?= form_open('/login') ?>
       <?= csrf_field() ?>
 
       <label for="username">Username</label>
-      <input type="text" name="username" id="username" value="<?= esc(old('username')) ?>">
+      <input type="text" name="username" id="username" value="<?= esc(old('username')) ?>" required>
 
       <label for="password">Password</label>
-      <input type="password" name="password" id="password">
+      <input type="password" name="password" id="password" required>
+
+      <label>
+        <input type="checkbox" name="remember" value="1"> Remember Me
+      </label>
 
       <input type="submit" value="Login">
     <?= form_close() ?>

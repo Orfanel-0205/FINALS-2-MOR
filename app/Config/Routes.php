@@ -16,9 +16,10 @@ $routes->get('vote/result/(:num)',   'Vote::result/$1', ['filter' => 'auth']);
 // -------------------
 // Authentication Routes
 // -------------------
-$routes->get('login',                'Auth::login');
-$routes->post('login',               'Auth::login');
-$routes->get('logout',               'Auth::logout', ['filter' => 'auth']);
+$routes->get('login',  'Auth::login');    // Login page (GET)
+$routes->post('login', 'Auth::login');    // Login form (POST)
+$routes->get('logout', 'Auth::logout', ['filter' => 'auth']);
+
 
 // -------------------
 // Admin Grouped Routes

@@ -8,8 +8,10 @@ class UserModel extends Model
 {
     protected $table         = 'users';
     protected $primaryKey    = 'id';
+
+    // Use 'password' in form input; it's hashed automatically
     protected $allowedFields = [
-        'username', 'password_hash', 'email', 'picture', 'bio', 'role'
+        'username', 'password', 'email', 'picture', 'bio', 'role', 'remember_token'
     ];
 
     protected $useTimestamps = true;
@@ -18,8 +20,12 @@ class UserModel extends Model
 
     protected $returnType    = 'array';
     protected $beforeInsert  = ['hashPassword'];
+    protected $beforeUpdate  = ['hashPassword'];
 
-    protected function hashPassword(array $data)
+    /**
+     * Automatically hashes password before insert/update
+     */
+    protected function hashPassword(array $data): array
     {
         if (isset($data['data']['password'])) {
             $data['data']['password_hash'] = password_hash(

@@ -22,18 +22,18 @@ class Filters extends BaseFilters
      * @var array<string, class-string|list<class-string>>
      */
     public array $aliases = [
-        'csrf'         => CSRF::class,
-        'toolbar'      => DebugToolbar::class,
-        'honeypot'     => Honeypot::class,
-        'invalidchars' => InvalidChars::class,
-        'secureheaders'=> SecureHeaders::class,
-        'cors'         => Cors::class,
-        'forcehttps'   => ForceHTTPS::class,
-        'pagecache'    => PageCache::class,
-        'performance'  => PerformanceMetrics::class,
+        'csrf'          => CSRF::class,
+        'toolbar'       => DebugToolbar::class,
+        'honeypot'      => Honeypot::class,
+        'invalidchars'  => InvalidChars::class,
+        'secureheaders' => SecureHeaders::class,
+        'cors'          => Cors::class,
+        'forcehttps'    => ForceHTTPS::class,
+        'pagecache'     => PageCache::class,
+        'performance'   => PerformanceMetrics::class,
 
-        // Your custom filters
-        'auth'         => \App\Filters\AuthGuard::class,
+        // ✅ Custom filters
+        'auth'          => \App\Filters\AuthGuard::class,
     ];
 
     /**
@@ -43,7 +43,7 @@ class Filters extends BaseFilters
      * @var array<string, list<string>>
      */
     public array $methods = [
-        // e.g. 'post' => ['csrf']
+        // e.g., 'post' => ['csrf']
     ];
 
     /**
@@ -53,9 +53,22 @@ class Filters extends BaseFilters
      * @var array<string, array<string, list<string>>>
      */
     public array $filters = [
-        'auth'       => ['before' => ['', 'vote/*']],
-        'auth:admin' => ['before' => ['admin/*']],
-    ];
+        // Apply the default 'auth' filter to all user routes (root + vote)
+        'auth' => [
+            'before' => [
+                '/',
+                'vote',
+                'vote/*',
+                'logout',
+            ],
+        ],
 
-  
+        // Apply 'auth:admin' for admin-only routes
+        'auth:admin' => [
+            'before' => [
+                'admin',
+                'admin/*',
+            ],
+        ],
+    ];
 }
